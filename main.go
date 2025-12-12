@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"ascii_art/servers"
+	ascii_art "ascii_art/servers"
 )
 
 func main() {
@@ -13,6 +13,12 @@ func main() {
 		return
 	}
 	inputdata := os.Args[1]
+	for _, char := range inputdata {
+		if char < ' ' || char > '~' {
+			fmt.Println("error: this unsopported rune")
+			return
+		}
+	}
 	data, err := os.ReadFile("standard.txt")
 	if err != nil {
 		fmt.Println("error: ", err)
